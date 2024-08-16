@@ -9,6 +9,14 @@ public class CSHormigaBL {
     private CSHormigaDTO csHormigaDTO;
     private CSHormigaDAO csHormigaDAO = new CSHormigaDAO();
     
+    public Integer readTipoBy(Integer nHormiga)throws Exception{
+        return csHormigaDAO.readTipoBy(nHormiga);
+    }
+    
+    public boolean updateTipo(Integer nHormiga)throws Exception{
+        return csHormigaDAO.updateTipo(new CSHormigaDTO(2, nHormiga));
+    }
+
     public boolean add(CSHormigaDTO csHormigaDTO) throws Exception {
         return csHormigaDAO.create(csHormigaDTO);
     }

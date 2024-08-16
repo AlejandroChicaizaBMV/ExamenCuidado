@@ -25,9 +25,9 @@ public class CSHormigaDTO {
 
     
 
-    public CSHormigaDTO(Integer nHormiga, Integer tipoHormiga) {
-        this.nHormiga = nHormiga;
+    public CSHormigaDTO(Integer tipoHormiga ,Integer nHormiga) {
         this.tipoHormiga = tipoHormiga;
+        this.nHormiga = nHormiga;
     }
 
     public CSHormigaDTO(Integer tipoHormiga) {

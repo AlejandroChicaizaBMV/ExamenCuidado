@@ -37,7 +37,8 @@ INSERT INTO CSIngestaNativa (nombre) VALUES
 ('Carnivoro'),
 ('Herviboro'),
 ('Omnivoro'),
-('Insectivoro');
+('Insectivoro'),
+('Nectivoro');
 
 INSERT INTO CSGenoAlimento (nombre) VALUES
 ('X'),
@@ -51,6 +52,7 @@ INSERT INTO CSSexo (nombre) VALUES
 
 INSERT INTO CSTipoHormiga (nombre) VALUES
 ('Larva'),
-('Obrera'),
-('Guerrera'),
+('Soldado'),
+('Zangano'),
+('Rastradora'),
 ('Reina');

@@ -14,6 +14,43 @@ import DataAccess.DTO.CSHormigaDTO;
 
 public class CSHormigaDAO extends CSSQLiteDataHelper implements IDAO<CSHormigaDTO> {
 
+    public Integer readTipoBy(Integer nHormiga) throws SQLException{
+        CSHormigaDTO csHormigaDTO = new CSHormigaDTO();
+        String query = "SELECT TipoHormiga FROM CSHormiga WHERE Estado = 'A' AND nHormiga = " + nHormiga;
+        Integer Tipo;
+        try {
+            Connection csConn = csOpenConnection();
+            Statement csStmt = csConn.createStatement();
+            ResultSet csRs = csStmt.executeQuery(query);
+            while (csRs.next()) {
+                csHormigaDTO = new CSHormigaDTO(csRs.getInt(1));
+            }
+            Tipo = csHormigaDTO.getTipoHormiga();
+        } catch (SQLException e) {
+            throw e;
+        }
+        return Tipo;
+    }
+
+    public boolean updateTipo(CSHormigaDTO entity) throws Exception {
+        DateTimeFormatter csDtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime     csNow = LocalDateTime.now();
+        String csQuery = "UPDATE CSHormiga SET TipoHormiga = ?, FechaModifica = ? WHERE nHormiga = ?";
+        
+        try {
+            Connection csConn        = csOpenConnection();
+            PreparedStatement csPstmt = csConn.prepareStatement(csQuery);
+            csPstmt.setInt(1, entity.getTipoHormiga());
+            csPstmt.setString(2, csDtf.format(csNow).toString());
+            csPstmt.setInt(3, entity.getnHormiga());
+
+            csPstmt.executeUpdate();
+            return true;    
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
     @Override
     public boolean create(CSHormigaDTO entity) throws Exception {
         String csQuery = "INSERT INTO CSHormiga (TipoHormiga, Sexo, Provincia, GenoAlimento, IngestaNativa) VALUES (?, ?, ?, ?, ?)";
@@ -37,7 +74,7 @@ public class CSHormigaDAO extends CSSQLiteDataHelper implements IDAO<CSHormigaDT
     @Override
     public List<CSHormigaDTO> readAll() throws Exception {
         List<CSHormigaDTO> csLst = new ArrayList<>();
-        String csQuery = "SELECT nHormiga, TipoHormiga, Sexo, Provincia, GenoAlimento, IngestaNativa, Estado, FechaCrea, FechaModifica FROM CSHormiga WHERE Estado = 'A'";
+        String csQuery = "SELECT nHormiga, TipoHormiga, Sexo, Provincia, GenoAlimento, IngestaNativa, Estado, FechaCrea, FechaModifica FROM CSHormiga";
         try {
             Connection csConn = csOpenConnection();
             Statement csStmt  = csConn.createStatement();
@@ -47,7 +84,7 @@ public class CSHormigaDAO extends CSSQLiteDataHelper implements IDAO<CSHormigaDT
                 CSHormigaDTO csHormigaDTO = new CSHormigaDTO(
                     csRs.getInt(1),
                     csRs.getInt(2),
-                    csRs.getObject(3, Integer.class), // Manejo de tipos nulos
+                    csRs.getObject(3, Integer.class),
                     csRs.getObject(4, Integer.class),
                     csRs.getObject(5, Integer.class),
                     csRs.getObject(6, Integer.class),

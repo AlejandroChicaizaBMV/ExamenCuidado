@@ -13,7 +13,7 @@ public class CSMainForm extends JFrame {
 
     private void csCustomizeComponent(String csTitleApp){
         setTitle(csTitleApp);
-        setSize(650, 650);
+        setSize(750, 750);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

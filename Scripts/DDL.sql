@@ -1,6 +1,6 @@
 -- database: ../DataBase/examenDataBase.sqlite
-DROP TABLE IF EXISTS CSTipoHormiga;
 DROP TABLE IF EXISTS CSHormiga;
+DROP TABLE IF EXISTS CSTipoHormiga;
 DROP TABLE IF EXISTS CSPais;
 DROP TABLE IF EXISTS CSRegion;
 DROP TABLE IF EXISTS CSProvincia;

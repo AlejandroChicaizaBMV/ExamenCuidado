@@ -26,6 +26,10 @@ public class App {
         
         //----HORMIGA BL TESTING -------
         // CSHormigaBL csHormigaBL = new CSHormigaBL();
-        // csHormigaBL.add(new CSHormigaDTO(1,1,1,1,1));
+        // csHormigaBL.updateTipo(4);
+
+        //------Hormiga DAO Testing--------
+        //CSHormigaDAO csHormigaDAO = new CSHormigaDAO();
+        //System.out.println(csHormigaDAO.readTipoBy(5));
     }
 }

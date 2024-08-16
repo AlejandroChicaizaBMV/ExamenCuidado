@@ -10,9 +10,10 @@ import UserInterface.CustomerControl.CSTextBox;
 
 public class CSPnlFormulario extends JPanel{
     public CSPnlDatos               csPnlDatos;
-    public CSPnlLogoHormiguero      csPnlLogoHormiguero;
-    public CSPnlSeccionExperimentos csPnlSeccionExperimentos;
-    public CSPanelAlimentoIngesta   csPanelAlimentoIngesta;
+
+    public CSPnlSeccionExperimentos csPnlSeccionExperimentos = new CSPnlSeccionExperimentos();
+    public CSPanelAlimentoIngesta   csPanelAlimentoIngesta = new CSPanelAlimentoIngesta(csPnlSeccionExperimentos);
+    public CSPnlLogoHormiguero      csPnlLogoHormiguero = new CSPnlLogoHormiguero(csPnlSeccionExperimentos, csPanelAlimentoIngesta);
     public CSPnlAddDel              csPnlAddDel;
     
     public CSPnlFormulario(){
@@ -28,14 +29,12 @@ public class CSPnlFormulario extends JPanel{
         csPnlDatos = new CSPnlDatos();
         add(csPnlDatos);
 
-        csPnlLogoHormiguero = new CSPnlLogoHormiguero();
+        
         csPnlLogoHormiguero.setPreferredSize(new Dimension(440,10));
         add(csPnlLogoHormiguero);
 
-        csPnlSeccionExperimentos = new CSPnlSeccionExperimentos();
         add(csPnlSeccionExperimentos);
 
-        csPanelAlimentoIngesta = new CSPanelAlimentoIngesta();
         add(csPanelAlimentoIngesta);
 
         csPnlAddDel = new CSPnlAddDel();

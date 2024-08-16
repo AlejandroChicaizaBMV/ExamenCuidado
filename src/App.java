@@ -1,5 +1,6 @@
 import com.formdev.flatlaf.FlatLightLaf;
 
+import BussinesLogic.CSHormigaBL;
 import DataAccess.CSAlimentoDAO;
 import DataAccess.CSGenoAlimentoDAO;
 import DataAccess.CSHormigaDAO;
@@ -21,5 +22,10 @@ public class App {
             e.printStackTrace();
         }
         new CSMainForm("EcuaFauna 2K24A");
+        
+        
+        //----HORMIGA BL TESTING -------
+        // CSHormigaBL csHormigaBL = new CSHormigaBL();
+        // csHormigaBL.add(new CSHormigaDTO(1,1,1,1,1));
     }
 }

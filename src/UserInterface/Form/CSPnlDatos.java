@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 
 import UserInterface.CSStyles;
+import UserInterface.CustomerControl.CSLabel;
 import UserInterface.CustomerControl.CSTextBox;
 
 import java.awt.*;
@@ -12,9 +13,9 @@ import java.awt.*;
 public class CSPnlDatos extends JPanel {
     
     private JLabel       csLblCedula;
-    private CSTextBox    csCedulaField;
+    private CSLabel    csLblNumeroCed;
     private JLabel       csLblNombres;
-    private CSTextBox    csNombresField;
+    private CSLabel    csLblNomApellido;
     private static String csNombre = "Sebastian Chicaiza";
     private static String csCedula = "172743226-0";
 
@@ -28,22 +29,26 @@ public class CSPnlDatos extends JPanel {
 
         
         csLblCedula = new JLabel("Cédula:", SwingConstants.CENTER);
-        csCedulaField = new CSTextBox();
-        csCedulaField.setPreferredSize(new Dimension(100, 20));
-        csCedulaField.setText(csCedula);
-        csLblNombres = new JLabel("Nombres", SwingConstants.CENTER);
-        csNombresField = new CSTextBox();
-        csNombresField.setPreferredSize(new Dimension(100, 20));
-        csNombresField.setText(csNombre);
+        csLblNumeroCed = new CSLabel();
+        
+        csLblNumeroCed.setPreferredSize(new Dimension(100, 20));
+        csLblNumeroCed.setText(csCedula);
+        csLblNumeroCed.setBackground(CSStyles.COLOR_FONT_WHITE);
+
+        csLblNombres = new JLabel("Nombres:", SwingConstants.CENTER);
+        csLblNomApellido = new CSLabel();
+        csLblNomApellido.setPreferredSize(new Dimension(100, 20));
+        csLblNomApellido.setText(csNombre);
+        csLblNomApellido.setBackground(CSStyles.COLOR_FONT_WHITE);
 
 
         
         
         
         add(csLblCedula);
-        add(csCedulaField);
+        add(csLblNumeroCed);
         add(csLblNombres);
-        add(csNombresField);
+        add(csLblNomApellido);
         setBackground(CSStyles.COLOR_FONT_LIGHT);
     }
 }

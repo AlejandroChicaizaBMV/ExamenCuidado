@@ -2,7 +2,7 @@ package DataAccess.DTO;
 
 public class CSHormigaDTO {
     private Integer nHormiga;
-    private String tipoHormiga;
+    private Integer tipoHormiga;
     private Integer sexo;
     private Integer provincia;
     private Integer genoAlimento;
@@ -14,7 +14,7 @@ public class CSHormigaDTO {
     // Constructores
     public CSHormigaDTO() {}
 
-    public CSHormigaDTO(String tipoHormiga, Integer sexo, Integer provincia, Integer genoAlimento,
+    public CSHormigaDTO(Integer tipoHormiga, Integer sexo, Integer provincia, Integer genoAlimento,
             Integer ingestaNativa) {
         this.tipoHormiga = tipoHormiga;
         this.sexo = sexo;
@@ -23,16 +23,18 @@ public class CSHormigaDTO {
         this.ingestaNativa = ingestaNativa;
     }
 
-    public CSHormigaDTO(Integer nHormiga, String tipoHormiga) {
+    
+
+    public CSHormigaDTO(Integer nHormiga, Integer tipoHormiga) {
         this.nHormiga = nHormiga;
         this.tipoHormiga = tipoHormiga;
     }
 
-    public CSHormigaDTO(String tipoHormiga) {
+    public CSHormigaDTO(Integer tipoHormiga) {
         this.tipoHormiga = tipoHormiga;
     }
 
-    public CSHormigaDTO(Integer nHormiga, String tipoHormiga, Integer sexo, Integer provincia,
+    public CSHormigaDTO(Integer nHormiga, Integer tipoHormiga, Integer sexo, Integer provincia,
                         Integer genoAlimento, Integer ingestaNativa, String estado,
                         String fechaCrea, String fechaModifica) {
         this.nHormiga = nHormiga;
@@ -49,8 +51,8 @@ public class CSHormigaDTO {
     // Getters y Setters
     public Integer getnHormiga() { return nHormiga; }
     public void setnHormiga(Integer nHormiga) { this.nHormiga = nHormiga; }
-    public String getTipoHormiga() { return tipoHormiga; }
-    public void setTipoHormiga(String tipoHormiga) { this.tipoHormiga = tipoHormiga; }
+    public Integer getTipoHormiga() { return tipoHormiga; }
+    public void setTipoHormiga(Integer tipoHormiga) { this.tipoHormiga = tipoHormiga; }
     public Integer getSexo() { return sexo; }
     public void setSexo(Integer sexo) { this.sexo = sexo; }
     public Integer getProvincia() { return provincia; }

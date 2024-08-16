@@ -21,7 +21,7 @@ public class CSHormigaDAO extends CSSQLiteDataHelper implements IDAO<CSHormigaDT
             Connection csConn = csOpenConnection();
             PreparedStatement csPstmt = csConn.prepareStatement(csQuery);
 
-            csPstmt.setString(1, entity.getTipoHormiga());
+            csPstmt.setInt(1, entity.getTipoHormiga());
             csPstmt.setObject(2, entity.getSexo(), java.sql.Types.INTEGER); // Manejo de tipos nulos
             csPstmt.setObject(3, entity.getProvincia(), java.sql.Types.INTEGER);
             csPstmt.setObject(4, entity.getGenoAlimento(), java.sql.Types.INTEGER);
@@ -46,7 +46,7 @@ public class CSHormigaDAO extends CSSQLiteDataHelper implements IDAO<CSHormigaDT
             while (csRs.next()) {
                 CSHormigaDTO csHormigaDTO = new CSHormigaDTO(
                     csRs.getInt(1),
-                    csRs.getString(2),
+                    csRs.getInt(2),
                     csRs.getObject(3, Integer.class), // Manejo de tipos nulos
                     csRs.getObject(4, Integer.class),
                     csRs.getObject(5, Integer.class),
@@ -72,7 +72,7 @@ public class CSHormigaDAO extends CSSQLiteDataHelper implements IDAO<CSHormigaDT
         try {
             Connection csConn        = csOpenConnection();
             PreparedStatement csPstmt = csConn.prepareStatement(csQuery);
-            csPstmt.setString(1, entity.getTipoHormiga());
+            csPstmt.setInt(1, entity.getTipoHormiga());
             csPstmt.setObject(2, entity.getSexo(), java.sql.Types.INTEGER);
             csPstmt.setObject(3, entity.getProvincia(), java.sql.Types.INTEGER);
             csPstmt.setObject(4, entity.getGenoAlimento(), java.sql.Types.INTEGER);
@@ -114,7 +114,7 @@ public class CSHormigaDAO extends CSSQLiteDataHelper implements IDAO<CSHormigaDT
             if (csRs.next()) {
                 csHormigaDTO = new CSHormigaDTO(
                     csRs.getInt(1),
-                    csRs.getString(2),
+                    csRs.getInt(2),
                     csRs.getObject(3, Integer.class),
                     csRs.getObject(4, Integer.class),
                     csRs.getObject(5, Integer.class),

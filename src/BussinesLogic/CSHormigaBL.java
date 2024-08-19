@@ -9,12 +9,12 @@ public class CSHormigaBL {
     private CSHormigaDTO csHormigaDTO;
     private CSHormigaDAO csHormigaDAO = new CSHormigaDAO();
     
-    public Integer readTipoBy(Integer nHormiga)throws Exception{
+    public String readTipoBy(Integer nHormiga)throws Exception{
         return csHormigaDAO.readTipoBy(nHormiga);
     }
     
     public boolean updateTipo(Integer nHormiga)throws Exception{
-        return csHormigaDAO.updateTipo(new CSHormigaDTO(2, nHormiga));
+        return csHormigaDAO.updateTipo(new CSHormigaDTO(nHormiga,2,2));
     }
 
     public boolean add(CSHormigaDTO csHormigaDTO) throws Exception {

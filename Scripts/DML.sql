@@ -34,6 +34,7 @@ INSERT INTO CSProvincia (nombre) VALUES
 ('Zamora Chinchipe');
 
 INSERT INTO CSIngestaNativa (nombre) VALUES
+('-'),
 ('Carnivoro'),
 ('Herviboro'),
 ('Omnivoro'),
@@ -46,6 +47,7 @@ INSERT INTO CSGenoAlimento (nombre) VALUES
 ('XY');
 
 INSERT INTO CSSexo (nombre) VALUES
+('-'),
 ('Macho'),
 ('Hembra'),
 ('Asexual');
@@ -56,3 +58,7 @@ INSERT INTO CSTipoHormiga (nombre) VALUES
 ('Zangano'),
 ('Rastradora'),
 ('Reina');
+
+INSERT INTO CSHormiga(id_TipoHormiga,id_Sexo,id_Provincia,id_GenoAlimento,id_IngestaNativa) 
+VALUES
+(1,1,1,1,1);

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import BussinesLogic.CSHormigaBL;
 import DataAccess.DTO.CSHormigaDTO;
@@ -48,7 +49,6 @@ public class CSPnlLogoHormiguero extends JPanel {
         csBtnCrear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Mostrar el cuadro de diálogo de confirmación
                 int respuesta = JOptionPane.showConfirmDialog(
                         CSPnlLogoHormiguero.this,
                         "¿Estás seguro de que deseas crear una Hormiga Larva?",
@@ -57,16 +57,17 @@ public class CSPnlLogoHormiguero extends JPanel {
                         JOptionPane.QUESTION_MESSAGE
                 );
 
-                // Verificar la respuesta del usuario
                 if (respuesta == JOptionPane.YES_OPTION) {
+                    Random random = new Random();
+                    int provincia = random.nextInt((24 - 1) + 1) + 1;
                     try {
-                        csHormigaBL.add(new CSHormigaDTO(1, 1, 1, 1, 1));
-                        updateExperimentPanel(); // Actualiza el panel de experimentos
+                        csHormigaBL.add(new CSHormigaDTO(1, 1, provincia, 1, 1));
+                        updateExperimentPanel(); 
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
-                // Si la respuesta es NO, no se hace nada
+                
             }
         });
 
@@ -77,10 +78,10 @@ public class CSPnlLogoHormiguero extends JPanel {
 
     private void updateExperimentPanel() throws Exception {
         if (csPnlSeccionExperimentos != null) {
-            csPnlSeccionExperimentos.csLoadData(); // Llama al método para recargar los datos
+            csPnlSeccionExperimentos.csLoadData(); 
         }
         if (csPanelAlimentoIngesta != null) {
-            csPanelAlimentoIngesta.csLlenarComboBoxes(); // Llama al método para recargar los datos
+            csPanelAlimentoIngesta.csLlenarComboBoxes(); 
         }
     }
 }

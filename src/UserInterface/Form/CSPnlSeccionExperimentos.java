@@ -6,51 +6,54 @@ import java.awt.*;
 import java.util.List;
 import BussinesLogic.CSHormigaBL;
 import DataAccess.DTO.CSHormigaDTO;
+import javax.swing.table.DefaultTableModel;
 
 public class CSPnlSeccionExperimentos extends JPanel {
 
+    private JTable tabla;
+    private DefaultTableModel modeloTabla;
+    private CSHormigaBL csHormigaBL = new CSHormigaBL();
 
-    private JTextArea csTextArea;
-    private JScrollPane csScrollPane;
-    private CSHormigaBL csHormigaBL;
-
-    public CSPnlSeccionExperimentos() {
-        csHormigaBL = new CSHormigaBL(); // Inicializa la capa de negocio
-        csCustomizeComponent();
-        csLoadData(); // Carga los datos al iniciar el panel
-    }
-
-    public void csCustomizeComponent() {
-        setBorder(new EmptyBorder(10, 30, 10, 30));
+    public CSPnlSeccionExperimentos(){
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(250, 2000));
 
-        // Configuración del JTextArea
-        csTextArea = new JTextArea();
-        csTextArea.setEditable(false);
-       // csTextArea.setPreferredSize(new Dimension(250, 50)); // El JTextArea es solo para lectura
+        // Configurar la tabla y su modelo
+        modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("nHormiga");
+        modeloTabla.addColumn("Tipo");
+        modeloTabla.addColumn("Sexo");
+        modeloTabla.addColumn("Provincia");
+        modeloTabla.addColumn("IngestaNativa");
+        modeloTabla.addColumn("Estado");
 
-        // Agrega el JTextArea a un JScrollPane
-        csScrollPane = new JScrollPane(csTextArea);
-        add(csScrollPane, BorderLayout.CENTER);
+        tabla = new JTable(modeloTabla);
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        tabla.setPreferredScrollableViewportSize(new Dimension(500, 2000));
+        add(new JScrollPane(tabla), BorderLayout.CENTER);
+
+        // Llenar la tabla con los datos de la base de datos
+        csLoadData(); 
     }
 
-    public void csLoadData() {
+    public void csLoadData(){
+        List<CSHormigaDTO> datos;
         try {
-            // Obtener todos los registros de la base de datos
-            List<CSHormigaDTO> csLstHormigas = csHormigaBL.getAll();
-
-            // Construir un String con los datos para mostrar en el JTextArea
-            StringBuilder csDataBuilder = new StringBuilder();
-            for (CSHormigaDTO hormiga : csLstHormigas) {
-                csDataBuilder.append(hormiga.toString()).append("\n\n");
+            // Vaciar la tabla antes de cargar nuevos datos
+            modeloTabla.setRowCount(0);
+            
+            datos = csHormigaBL.getAll();
+            for (CSHormigaDTO dato : datos) {
+                modeloTabla.addRow(new Object[]{
+                    dato.getCsNHormiga(),
+                    dato.getCsTipoHormiga(),
+                    dato.getCsSexo(),
+                    dato.getCsProvincia(),
+                    dato.getCsIngestaNativa(),
+                    dato.getCsEstado()
+                });
             }
-
-            // Mostrar los datos en el JTextArea
-            csTextArea.setText(csDataBuilder.toString());
         } catch (Exception e) {
-            // Muestra un mensaje de error si ocurre una excepción
-            JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 }

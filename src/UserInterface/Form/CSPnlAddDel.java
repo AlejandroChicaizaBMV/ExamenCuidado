@@ -28,6 +28,9 @@ public class CSPnlAddDel extends JPanel{
 
         add(btnAdd);
         add(btnDel);
+        btnAdd.addActionListener(e -> {
+            
+        });
         setBackground(CSStyles.COLOR_FONT_LIGHT);
 
     }

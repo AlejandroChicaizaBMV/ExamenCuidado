@@ -30,7 +30,7 @@ public class CSPanelAlimentoIngesta extends JPanel {
     private CSPnlSeccionExperimentos csPnlSeccionExperimentos;
     private CSHormigaBL csHormigaBL = new CSHormigaBL();
 
-    private Integer selectedHormigaId; // Variable para almacenar el ID de la hormiga seleccionada
+    private Integer selectedHormigaId; 
 
     public CSPanelAlimentoIngesta(CSPnlSeccionExperimentos csPnlSeccionExperimentos) {
         this.csPnlSeccionExperimentos = csPnlSeccionExperimentos;
@@ -38,7 +38,7 @@ public class CSPanelAlimentoIngesta extends JPanel {
         try {
             csLlenarComboBoxes();
         } catch (Exception e) {
-            e.printStackTrace(); // Agrega manejo de excepciones adecuado
+            e.printStackTrace(); 
         }
     }
 
@@ -68,11 +68,9 @@ public class CSPanelAlimentoIngesta extends JPanel {
         csCBoxHormiga = new JComboBox<>();
         add(csCBoxHormiga);
 
-        // Añadir ActionListeners para manejar los clics en los botones
         csBtnAlimentarGeno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Verificar si hay una hormiga seleccionada
                 if (selectedHormigaId != null) {
                     String selectedGenoAlimento = (String) csCBoxGenoAlimento.getSelectedItem();
                     System.out.println("Alimentar hormiga " + selectedHormigaId + " con GenoAlimento: " + selectedGenoAlimento);
@@ -94,17 +92,16 @@ public class CSPanelAlimentoIngesta extends JPanel {
         csBtnAlimentarIngesta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Verificar si hay una hormiga seleccionada
                 if (selectedHormigaId != null) {
                     String selectedIngestaNativa = (String) csCBoxIngestaNativa.getSelectedItem();
                     System.out.println("Alimentar hormiga " + selectedHormigaId + " con Ingesta Nativa: " + selectedIngestaNativa);
-                    int tipo = 0;
+                    String tipo = "";
                     try {
                         tipo = csHormigaBL.readTipoBy(selectedHormigaId);
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
-                    if(!selectedIngestaNativa.equals("Carnivoro") && tipo == 2){
+                    if(!selectedIngestaNativa.equals("Carnivoro") && tipo.equals("Soldado")){
                         try {
                             csHormigaBL.delete(selectedHormigaId);
                             updateExperimentPanel();
@@ -118,7 +115,6 @@ public class CSPanelAlimentoIngesta extends JPanel {
             }
         });
 
-        // Agregar un ActionListener al csCBoxHormiga para actualizar el ID de la hormiga seleccionada
         csCBoxHormiga.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,29 +124,30 @@ public class CSPanelAlimentoIngesta extends JPanel {
     }
 
     public void     csLlenarComboBoxes() throws Exception {
-        // Obtener la lista de GenoAlimento desde el BL
         List<CSGenoAlimentoDTO> genoAlimentos = genoAlimentoBL.getAll();
+        csCBoxGenoAlimento.removeAllItems();
         for (CSGenoAlimentoDTO geno : genoAlimentos) {
-            csCBoxGenoAlimento.addItem(geno.getCsNombre()); // Ajusta según el campo en tu DTO
+            csCBoxGenoAlimento.addItem(geno.getCsNombre()); 
         }
 
-        // Obtener la lista de IngestaNativa desde el BL
+        
         List<CSIngestaNativaDTO> ingestasNativas = ingestaNativaBL.getAll();
+        csCBoxIngestaNativa.removeAllItems();
         for (CSIngestaNativaDTO ingesta : ingestasNativas) {
-            csCBoxIngestaNativa.addItem(ingesta.getCsNombre()); // Ajusta según el campo en tu DTO
+            csCBoxIngestaNativa.addItem(ingesta.getCsNombre()); 
         }
 
-        // Obtener la lista de Hormigas desde el BL
-        List<CSHormigaDTO> hormigas = csHormigaBL.getAll(); // Asegúrate de tener este método en CSHormigaBL
+        
+        List<CSHormigaDTO> hormigas = csHormigaBL.getAll(); 
         csCBoxHormiga.removeAllItems();
         for (CSHormigaDTO hormiga : hormigas) {
-            csCBoxHormiga.addItem(hormiga.getnHormiga()); // Añadir el ID de la hormiga
+            csCBoxHormiga.addItem(hormiga.getCsNHormiga()); 
         }
     }
 
     private void updateExperimentPanel() throws Exception {
         if (csPnlSeccionExperimentos != null) {
-            csPnlSeccionExperimentos.csLoadData(); // Llama al método para recargar los datos
+            csPnlSeccionExperimentos.csLoadData();; 
         }
     }
 }
